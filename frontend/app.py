@@ -40,11 +40,13 @@ def render_header() -> None:
     st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
     theme = st_theme()
-    title_image = "./DataRobot_white.png"
+    title_image = "./DataRobot_white.svg"
     if theme and theme.get("base") == "light":
-        title_image = "./DataRobot_black.png"
-    logo, _ = st.columns([1, 2])
-    logo.image(title_image)
+        title_image = "./DataRobot_black.svg"
+
+    with st.container(key="datarobot-logo"):
+        logo, _ = st.columns([1, 2])
+        logo.image(title_image, width=200)
 
     st.title(app_settings.page_title)
     st.write(app_settings.page_description)
