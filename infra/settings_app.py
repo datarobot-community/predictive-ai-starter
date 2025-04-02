@@ -36,9 +36,10 @@ from starter.i18n import LanguageCode, LocaleSettings
 
 application_path = Path(application_path_str)
 
+
 app_source_args = ApplicationSourceArgs(
     resource_name=f"Predictive AI Starter App Source [{project_name}]",
-    base_environment_id=GlobalRuntimeEnvironment.PYTHON_39_STREAMLIT.value.id,
+    base_environment_id=GlobalRuntimeEnvironment.PYTHON_312_APPLICATION_BASE.value.id,
 ).model_dump(mode="json", exclude_none=True)
 
 app_resource_name: str = f"Predictive AI Starter Application [{project_name}]"

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [v0.1.4-release.11.0] - 2025-04-02
+
+### Fixed
+- Fix DataRobot URLs for on-premises environments
+
 ## [0.1.4] - 2025-03-06
 
 ### Fixed

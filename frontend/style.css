@@ -36,14 +36,6 @@ textarea {
     background-color: #2A3036;
 }
 
-.st-bd {
-    color: #297ab4;
-}
-
-.st-c2 {
-    background-color: #297ab4;
-}
-
 /* Remove rounded corners from DataRobot logo */
 .st-key-datarobot-logo img {
     border-radius: 0;

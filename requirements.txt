@@ -1,4 +1,4 @@
-pulumi>=3.0.0,<4.0.0
+pulumi==3.153.0
 pulumi-datarobot>=0.8.13,<0.9
 
 datarobot==3.4.0
@@ -7,6 +7,7 @@ datarobotx-idp>=0.2.13,<0.3
 
 streamlit>=1.39.0,<2
 st-theme>=1.2.3,<2
+streamlit-javascript>=0.1.5,<1.0
 
 python-dotenv==1.0.1
 pydantic>=2.9.2,<2.10
