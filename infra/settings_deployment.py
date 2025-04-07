@@ -11,13 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 import pulumi_datarobot as datarobot
+from datarobot_pulumi_utils.schema.custom_models import DeploymentArgs
 
-from .common.schema import (
-    DeploymentArgs,
-)
 from .settings_main import project_name
 
 deployment_args = DeploymentArgs(

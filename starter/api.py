@@ -11,14 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 import sys
-from urllib.parse import urljoin
 
-import datarobot as dr
 import yaml
 from pydantic import ValidationError
+from streamlit_javascript import st_javascript
 
 sys.path.append("..")
 
@@ -51,12 +48,19 @@ def get_app_settings() -> AppSettings:
 
 
 def get_app_urls() -> AppUrls:
-    base_url = urljoin(dr.Client().endpoint, "..")  # type: ignore[attr-defined]
-    use_case_url = base_url + f"usecases/{app_settings.use_case_id}/overview"
+    try:
+        base_url = st_javascript("window.location.origin + '/'")
+        if not isinstance(base_url, str):  # base_url == 0 while page is loading
+            base_url = "/"
+    except Exception:
+        base_url = "/"
+
+    use_case_url = f"{base_url}usecases/{app_settings.use_case_id}/overview"
     project_url = (
-        base_url + f"projects/{app_settings.project_id}/models/{app_settings.model_id}/"
+        f"{base_url}projects/{app_settings.project_id}/models/{app_settings.model_id}/"
     )
-    deployment_url = base_url + f"deployments/{deployment_id}/overview"
+    deployment_url = f"{base_url}deployments/{deployment_id}/overview"
+
     return AppUrls(
         use_case=use_case_url,
         project=project_url,

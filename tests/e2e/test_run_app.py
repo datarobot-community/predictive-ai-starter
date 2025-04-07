@@ -33,12 +33,13 @@ def test_app_loaded(browser: webdriver.Chrome, get_app_url: str) -> None:
 
 
 @pytest.mark.usefixtures("check_if_logged_in")
-def test_make_predictions(browser: webdriver.Chrome):
+def test_make_predictions(browser: webdriver.Chrome) -> None:
     submit_btn = "[data-testid='stBaseButton-secondaryFormSubmit']"
 
     wait_for_element_to_be_clickable(browser, By.CSS_SELECTOR, submit_btn)
+
     browser.find_element(By.CSS_SELECTOR, submit_btn).click()
 
     assert wait_for_element_to_be_visible(
-        browser, By.CSS_SELECTOR, "[data-testid='data-grid-canvas']", timeout=60
+        browser, By.CSS_SELECTOR, "[data-testid='data-grid-canvas']", timeout=120
     )

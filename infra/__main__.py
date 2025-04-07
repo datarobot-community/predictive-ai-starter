@@ -11,9 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 import sys
 
+import papermill as pm
 import pulumi
 import pulumi_datarobot as datarobot
 import yaml
@@ -24,7 +24,6 @@ from infra import (
     settings_app,
     settings_main,
 )
-from infra.common.papermill import run_notebook
 from infra.settings_deployment import (
     deployment_args,
 )
@@ -42,7 +41,15 @@ LocaleSettings().setup_locale()
 
 if not model_training_output_path.exists():
     pulumi.info("Executing model training notebook...")
-    run_notebook(model_training_nb_path)
+    pm.execute_notebook(
+        model_training_nb_path,
+        output_path=None,
+        cwd=model_training_nb_path.parent,
+        log_output=False,
+        progress_bar=False,
+        stderr_file=sys.stderr,
+        stdout_file=sys.stdout,
+    )
 else:
     pulumi.info(
         f"Using existing model training outputs in '{model_training_output_path}'"

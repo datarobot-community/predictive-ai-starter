@@ -20,6 +20,7 @@ from typing import Optional
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -32,6 +33,8 @@ password = os.environ.get("APP_PASSWORD", "")
 app_id = os.environ.get("APP_ID", "")
 host = os.environ.get("DR_HOST", "").rstrip("/")
 app_url = os.environ.get("APP_URL", None)
+chrome_binary_location = os.environ.get("CHROME_BINARY_LOCATION", None)
+chromedriver_binary_location = os.environ.get("CHROMEDRIVER_BINARY_LOCATION", None)
 
 # Define the login URL and the URL to test after login
 login_url = f"{host}/sign-in"
@@ -48,6 +51,10 @@ logger = logging.getLogger(__name__)
 @pytest.fixture(scope="session")
 def browser() -> webdriver.Chrome:  # type: ignore
     options = Options()
+    if chrome_binary_location:
+        options.binary_location = chrome_binary_location
+
+    service = Service(chromedriver_binary_location)
 
     if not run_visual:
         options.add_argument("--headless")  # Run in headless mode
@@ -55,7 +62,7 @@ def browser() -> webdriver.Chrome:  # type: ignore
         options.add_argument(
             "--no-sandbox"
         )  # it is important to run selenium with chrome into docker.
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=options, service=service)
 
     yield driver
 
@@ -71,6 +78,10 @@ def get_app_url() -> Optional[str]:
 
 @pytest.fixture(scope="session")
 def check_if_logged_in(browser: webdriver.Chrome) -> bool:
+    # No need to check if logged in when running app in dev mode
+    if "http://localhost" in app_url:
+        return True
+
     # Check if the browser is currently on the HOST page (check if it contains HOST in the URL)
     if host in browser.current_url:
         # Check if local storage contains apc_user_id
