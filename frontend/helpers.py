@@ -24,12 +24,12 @@ from datarobot_predict.deployment import PredictionResult, predict
 
 @st.cache_data(show_spinner=False)
 def retrieve_scoring_data(dataset_id: str, target: str) -> pd.DataFrame:
-    return dr.Dataset.get(dataset_id).get_as_dataframe().drop(columns=[target])  # type: ignore[attr-defined]
+    return dr.Dataset.get(dataset_id).get_as_dataframe().drop(columns=[target])
 
 
 @st.cache_data(show_spinner=False)
 def make_predictions(
-    _deployment: dr.Deployment,  # type: ignore[name-defined]
+    _deployment: dr.Deployment,
     dataset: pd.DataFrame,
     max_explanations: int = 5,
     rows_to_sample: int = 100,

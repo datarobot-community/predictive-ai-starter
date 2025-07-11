@@ -24,7 +24,7 @@ You should include a **summary** of your template as well as some **examples** o
 
 ## Setup
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > If you are running this template in a DataRobot codespace, `pulumi` is already configured and the repository is automatically cloned;
 > skip to **Step 3**.
 
