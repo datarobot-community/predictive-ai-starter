@@ -24,7 +24,7 @@ from pydantic_settings import (
     PydanticBaseSettingsSource,
     SettingsConfigDict,
 )
-from pydantic_settings.sources import parse_env_vars
+from pydantic_settings.sources.utils import parse_env_vars
 
 
 def get_stack_suffix() -> str:

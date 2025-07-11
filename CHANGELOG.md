@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [0.1.6] - 2025-04-07
+
+### Fixed
+
+- Fixed pydantic-settings due for compatibility in 2.9.0
+- Fix `tests/e2e` Dockerfile security issues
+- Fix prompt column issue by upgrading pulumi-datarobot to 0.10.8
+
+### Changed
+
+- Updated pydantic-settings requirement to >=2.5.2,<2.10
+- Improved base Foundational Application template
+
 ## [0.1.5] - 2025-04-07
 
 ### Added
