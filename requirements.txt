@@ -10,7 +10,7 @@ streamlit>=1.39.0,<2
 st-theme>=1.2.3,<2
 streamlit-javascript>=0.1.5,<1.0
 
-python-dotenv==1.0.1
+python-dotenv==1.1.1
 pydantic>=2.9.2,<2.10
 pydantic-settings>=2.9.0,<2.11
 eval-type-backport>=0.2.0,<0.3
