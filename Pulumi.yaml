@@ -1,0 +1,11 @@
+---
+name: predictive-ai-starter
+description: Predictive AI Starter
+runtime:
+  name: python
+main: infra
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: python
+  datarobot:tracecontext: predictive-ai-starter

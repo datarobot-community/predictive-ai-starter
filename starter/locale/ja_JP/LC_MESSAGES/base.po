@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-11-11 18:14+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+msgid "Select the deployment and scoring dataset to use:"
+msgstr "使用するデプロイメントとスコアリングデータセットを選択してください："
+
+msgid "Number of explanations to generate"
+msgstr "生成する説明の数"
+
+msgid "Number of rows to score on"
+msgstr "スコアリングする行数"
+
+msgid "Submit"
+msgstr "送信"
+
+msgid "Project details:"
+msgstr "プロジェクトの詳細："
+
+msgid "Use case:"
+msgstr "ユースケース："
+
+msgid "Project:"
+msgstr "プロジェクト："
+
+msgid "Deployment:"
+msgstr "デプロイメント："
+
+msgid "Retrieving scoring data..."
+msgstr "スコアリングデータを取得しています..."
+
+msgid "Scoring data"
+msgstr "スコアリングデータ"
+
+msgid "Making predictions..."
+msgstr "予測を実行しています..."
+
+msgid "Predictive AI Starter"
+msgstr "予測AIスターター"
+
+msgid "An application designed to simplify interactions with predictions while providing clear insights into the key drivers behind those predictions."
+msgstr "アプリケーションは、予測とのやり取りを簡素化し、それらの予測の背後にある主要な要因について明確な洞察を提供するように設計されています。"
+
+msgid ""
+"Unable to load Deployment IDs or Application Settings. If running "
+"locally, verify you have selected the correct stack and that it is active "
+"using `pulumi stack output`. If running in DataRobot, verify your "
+"runtime parameters have been set correctly."
+msgstr ""
+"デプロイメントIDまたはアプリケーション設定を読み込めません。ローカルで実行している場合、正しいスタックが選択されていて、それがアクティブになっていることを`pulumi stack output`を使って確認してください。DataRobotで実行中の場合は、ランタイムパラメータが正しく設定されていることを確認してください。"
