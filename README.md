@@ -24,6 +24,34 @@ You should include a **summary** of your template as well as some **examples** o
 
 ## Setup
 
+### Quickstart with DataRobot CLI
+
+#### 1. Install the DataRobot CLI
+
+If you haven't already, install the DataRobot CLI by following the installation instructions at:  
+https://github.com/datarobot-oss/cli?tab=readme-ov-file#installation
+
+#### 2. Start the Application
+
+Run the following command to start the local development environment. An interactive wizard will guide you through the selection of configuration options, including creating a `.env` file in the root directory and populating it with environment variables you specify during the wizard.
+
+```sh
+dr start
+```
+
+The DataRobot CLI (`dr`) will:
+- Guide you through configuration setup
+- Create and populate your `.env` file with the necessary environment variables
+- Deploy your application to DataRobot
+- Display a link to your running application when complete
+
+When deployment completes, the terminal will display a link to your running application.  
+👉 **Click the link to open and start using your app!**
+
+### Manual Setup (Alternative)
+
+If you prefer to set up manually without the CLI wizard, follow these steps:
+
 > [!IMPORTANT]
 > If you are running this template in a DataRobot codespace, `pulumi` is already configured and the repository is automatically cloned;
 > skip to **Step 3**.

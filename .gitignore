@@ -1,6 +1,8 @@
 # keep all .gitkeep files
 !.gitkeep
 
+/Taskfile.yml
+
 ##########################
 # Common files
 
@@ -207,3 +209,5 @@ Pulumi.*.yaml
 
 
 **/e2e/test_results/*
+
+.datarobot/cli/state.yaml

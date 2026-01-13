@@ -1,0 +1,17 @@
+---
+version: '3'
+tasks:
+  install:
+    desc: 🛠️ Install Streamlit dependencies
+    cmds:
+      - python -m pip install -r requirements.txt
+
+  dev:
+    desc: 🚀 Start Streamlit development server
+    cmds:
+      - streamlit run app.py
+
+  start:
+    desc: 🚀 Start Streamlit application
+    cmds:
+      - bash start-app.sh

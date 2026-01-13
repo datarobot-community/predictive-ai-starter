@@ -7,7 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-## [0.1.6] - 2025-04-07
+## [0.3.0] - 2026-01-13
+
+### Added
+
+- Integration with DataRobot CLI for streamlined setup and deployment workflow
+- CLI configuration files (`.datarobot/cli/base.yml` and `.datarobot/cli/versions.yaml`)
+- Task runner configuration with Taskfile.yaml for streamlined tasks (start, install, lint, dev)
+- Frontend-specific Taskfile for modular task management
+- CLI-first quickstart instructions in README.md
+- Integration with DataRobot Python client 3.9.1 `CustomApplication` and `CustomApplicationSource` entities.
+- Dynamic resource fetching from CustomApplicationSource when creating CustomApplications.
+
+### Changed
+
+- Updated quickstart.py to make stack_name optional with interactive prompt
+- Modularized task runner configuration with frontend-specific taskfile
+
+## [0.2.0] - 2025-07-14
+
+### New release
+
+## [0.1.6] - 2025-07-11
 
 ### Fixed
 
@@ -38,7 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Codespace python env no longer broken by quickstart
- 
+
 ### Changed
 
 - Move pulumi entrypoint to the infra directory
@@ -56,7 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix comment handling in quickstart
 - quickstart.py now supports multiline values correctly
-  
+
 ### Changed
 - add 3.9 compatibility check to mypy
 - update pulumi-datarobot to >=0.4.5
