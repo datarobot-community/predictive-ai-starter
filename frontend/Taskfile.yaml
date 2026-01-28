@@ -10,8 +10,3 @@ tasks:
     desc: 🚀 Start Streamlit development server
     cmds:
       - streamlit run app.py
-
-  start:
-    desc: 🚀 Start Streamlit application
-    cmds:
-      - bash start-app.sh

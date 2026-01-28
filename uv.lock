@@ -1,0 +1,8 @@
+version = 1
+revision = 1
+requires-python = ">=3.9"
+
+[[package]]
+name = "predictive-ai-starter"
+version = "0.0.1"
+source = { virtual = "." }

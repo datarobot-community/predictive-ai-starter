@@ -1,0 +1,118 @@
+---
+version: '3'
+includes:
+  common:
+    taskfile: ../core/task-common.yaml
+    internal: true
+
+vars:
+  PULUMI_SKIP_UPDATE_CHECK:
+    # Check if PULUMI_SKIP_UPDATE_CHECK is set in the environment;
+    # if not, default to "0"
+    sh: |
+      if [ -n "${PULUMI_SKIP_UPDATE_CHECK:-}" ]; then
+        echo "${PULUMI_SKIP_UPDATE_CHECK}"
+      else
+        echo "0"
+      fi
+
+  PULUMI_DATAROBOT_PLUGIN_VERSION:
+    # Check if PULUMI_DATAROBOT_PLUGIN_VERSION is set in the environment;
+    # if not, default to preset version
+    sh: |
+      if [ -n "${PULUMI_DATAROBOT_PLUGIN_VERSION:-}" ]; then
+        echo "${PULUMI_DATAROBOT_PLUGIN_VERSION}"
+      else
+        echo "v0.10.28"
+      fi
+
+  PULUMI_DATAROBOT_DEFAULT_URL:
+    # Check if PULUMI_DATAROBOT_DEFAULT_URL is set in the environment;
+    # if not, default to preset URL
+    # This url can be specified to override the default url (e.g. air gap)
+    sh: |
+      if [ -n "${PULUMI_DATAROBOT_DEFAULT_URL:-}" ]; then
+        echo "${PULUMI_DATAROBOT_DEFAULT_URL}"
+      else
+        echo "https://github.com/datarobot-community/pulumi-datarobot/releases/download/v0.10.28"
+      fi
+
+tasks:
+
+  auth-check:
+    silent: true
+    desc: "🔐 Check authentication prerequisites"
+    cmds:
+      - |
+        if command -v dr &> /dev/null && dr auth help 2>&1 | grep -q "check"; then
+          echo "🔐 Checking authentication.."
+          dr auth check
+        else
+          echo "ℹ️  Skipping auth check (not available)"
+        fi
+
+  pulumi-datarobot-plugin-check:
+    # Prevents github rate limiting issues when installing pulumi datarobot plugin.
+    # See https://github.com/datarobot-community/pulumi-datarobot?tab=readme-ov-file#rate-limited-by-github
+    # To use this task by default, set the environment variable PULUMI_SKIP_UPDATE_CHECK=1
+    silent: true
+    # desc: "⬇️ Install DataRobot Pulumi plugins"
+    cmds:
+      - |
+        if [ "{{.PULUMI_SKIP_UPDATE_CHECK}}" = "1" ]; then
+          {{.UV_CMD}} run pulumi plugin install resource datarobot {{.PULUMI_DATAROBOT_PLUGIN_VERSION}} \
+          --server {{.PULUMI_DATAROBOT_DEFAULT_URL}}
+        fi
+
+  init:
+    silent: true
+    desc: "🆕 Initialize a new Pulumi stack"
+    cmds:
+      - "{{.UV_CMD}} run pulumi stack init {{.CLI_ARGS}}"
+
+  select:
+    silent: true
+    desc: "🚂 Select a Stack"
+    cmds:
+      - "{{.UV_CMD}} run pulumi stack select {{.CLI_ARGS}}"
+
+  up:
+    silent: true
+    aliases:
+      - deploy
+    desc: "🔨 Deploy the infrastructure"
+    deps:
+      - auth-check
+    cmds:
+      - task: pulumi-datarobot-plugin-check
+      - echo "🔨 Deploying the infrastructure.."
+      - "{{.UV_CMD}} run pulumi up {{.CLI_ARGS}}"
+
+  refresh:
+    silent: true
+    desc: "🔄 Refresh the infrastructure"
+    deps:
+      - auth-check
+    cmds:
+      - task: pulumi-datarobot-plugin-check
+      - echo "🔄 Refreshing the infrastructure.."
+      - "{{.UV_CMD}} run pulumi refresh {{.CLI_ARGS}}"
+
+  info:
+    silent: true
+    desc: "ℹ️ Show Pulumi stack info"
+    cmds:
+      - task: pulumi-datarobot-plugin-check
+      - "{{.UV_CMD}} run pulumi stack {{.CLI_ARGS}}"
+
+  down:
+    silent: true
+    aliases:
+      - destroy
+    desc: "💥 Destroy the deployed infrastructure"
+    deps:
+      - auth-check
+    cmds:
+      - task: pulumi-datarobot-plugin-check
+      - echo "💥 Destroying the infrastructure.."
+      - "{{.UV_CMD}} run pulumi destroy {{.CLI_ARGS}}"
