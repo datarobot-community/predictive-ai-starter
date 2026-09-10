@@ -7,17 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-## [0.3.2] - 2026-01-27
+## [11.12.0] - 2026-09-10
+
+### Changed
+
+- Adopted marketing versioning for releases.
+- Added support for Python 3.12 and 3.13.
+- Migrated end-to-end validation to the new E2E pipeline.
+- Refined testing and Codespaces documentation.
 
 ### Fixed
 
-- Fix DR CLI update
+- Fixed deployment and cleanup in the E2E pipeline.
+- Improved Pulumi installation detection.
 
 ## [0.3.1] - 2026-01-23
 
 ### Changed
 
 - DataRobot CLI: `dr start` improvements and `dr run deploy` as `pulumi up` wrapper
+- DataRobot CLI: `dr start` logic for Pulumi install check is updated for latest Pulumi versions
+
+### Fixed
+
+- Fix DR CLI update
 
 ## [0.3.0] - 2026-01-13
 

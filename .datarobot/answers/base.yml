@@ -1,0 +1,13 @@
+---
+# Changes here will be overwritten by Copier
+_commit: 47b576e
+_src_path: https://github.com/datarobot/af-component-base
+copyright_year: 2024
+github_owner_group: '@datarobot/customer-engineering'
+harness_org_id: No_Code_Apps
+oss_repo_name: predictive-ai-starter
+private_repo_name: recipe-template
+template_code_name: predictive-ai-starter
+template_description: This application template outlines a basic Predictive AI deployment
+    workflow in DataRobot. It is a good starter for making a new recipe.
+template_name: Predictive AI Starter

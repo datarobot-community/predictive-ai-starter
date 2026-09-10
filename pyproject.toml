@@ -4,7 +4,7 @@ version = "0.0.1"
 description = """
 This application template outlines a basic Predictive AI deployment workflow in DataRobot.
 """
-requires-python = ">=3.9"
+requires-python = ">=3.12, <3.14"
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
@@ -41,8 +41,8 @@ exclude = [
 line-length = 88
 indent-width = 4
 
-# Assume Python 3.11
-target-version = "py311"
+# Assume Python 3.12
+target-version = "py312"
 
 [tool.ruff.lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
@@ -98,7 +98,7 @@ exclude = """(?x)(
     | hooks/
     | e2e/
   )"""
-python_version = "3.11"
+python_version = "3.12"
 check_untyped_defs = true
 disallow_any_generics = true
 disallow_incomplete_defs = true

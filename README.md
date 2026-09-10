@@ -1,4 +1,21 @@
 # Predictive AI Starter
+<p align="center">
+  <a href="https://app.datarobot.com/usecases/application-templates/674de0696ac2f6b510c16140?referrerUrl=github">
+    <img src="https://img.shields.io/badge/US-Open%20in%20a%20Codespace-%23909BF5?style=flat&labelColor=%2330373D" alt="US - Open in a Codespace">
+  </a>
+  <a href="https://app.eu.datarobot.com/usecases/application-templates/674de0696ac2f6b510c16140?referrerUrl=github">
+    <img src="https://img.shields.io/badge/EU-Open%20in%20a%20Codespace-%232BC46F?labelColor=%2330373D" alt="EU - Open in a Codespace">
+  </a>
+  <a href="https://app.jp.datarobot.com/usecases/application-templates/674de0696ac2f6b510c16140?referrerUrl=github">
+    <img src="https://img.shields.io/badge/JP-Open%20in%20a%20Codespace-%23EDA769?labelColor=%2330373D" alt="JP - Open in a Codespace">
+  </a>
+  <a href="https://app.jp.datarobot.com/usecases/application-templates/674de0696ac2f6b510c16140?referrerUrl=github">
+    <img src="https://img.shields.io/badge/JP-%E3%80%8CCodespace%20%E3%81%A7%E9%96%8B%E3%81%8F%E3%80%8D-%23EDA769?labelColor=%2330373D" alt="JP - 「Codespaceで開く」">
+  </a>
+  <a href="https://join.slack.com/t/datarobot-community/shared_invite/zt-3uzfp8k50-SUdMqeux25ok9_5wr4okrg">
+    <img src="https://img.shields.io/badge/%23applications-a?label=Slack&labelColor=30373D&color=81FBA6" alt="Slack #applications">
+  </a>
+</p>
 
 This application template outlines a basic Predictive AI deployment workflow in DataRobot. It is a good starter for making a new recipe. DataRobot recommends modifying this README to include information about the template you are creating.
 You should include a **summary** of your template as well as some **examples** of pipeline changes.
@@ -20,7 +37,8 @@ You should include a **summary** of your template as well as some **examples** o
 5. [Share results](#share-results)
 6. [Delete all resources](#delete-all-provisioned-resources)
 7. [Setup for advanced users](#setup-for-advanced-users)
-8. [Data privacy](#data-privacy)
+8. [Testing](#testing)
+9. [Data privacy](#data-privacy)
 
 ## Setup
 
@@ -195,6 +213,34 @@ pulumi up
 ```
 
 For projects that will be maintained, DataRobot recommends forking the repo so upstream fixes and improvements can be merged in the future.
+
+## Testing
+
+### Pytest suite
+
+The tests in `tests/` (excluding `tests/e2e/`) exercise the deployed
+application and — via Streamlit's `AppTest` — the frontend directly, plus a
+standalone unit-test suite for `quickstart.py`'s `.env` parser.
+
+```bash
+pip install -r requirements.txt
+pytest tests --ignore=tests/e2e
+```
+
+Pass `--pulumi_up` to deploy a fresh, disposable stack for the run instead of
+using the currently-selected one:
+
+```bash
+pytest tests --ignore=tests/e2e --pulumi_up                       # tear down on success, keep the stack if a test fails (for debugging)
+pytest tests --ignore=tests/e2e --pulumi_up --always_delete_stack # always tear down, even after a failure
+```
+
+### End-to-end tests
+
+`tests/e2e/` holds the Cypress suite the Harness `e2e_v2` pipeline runs
+against a deployed Custom Application. See
+[tests/e2e/README.md](tests/e2e/README.md) for setup, configuration, and how
+to run it.
 
 ## Data privacy
 
