@@ -1,3 +1,6 @@
+> [!WARNING]
+> **This template is no longer supported and will be archived.** Please do not use it for new projects.
+
 # Predictive AI Starter
 <p align="center">
   <a href="https://app.datarobot.com/usecases/application-templates/674de0696ac2f6b510c16140?referrerUrl=github">
